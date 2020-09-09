@@ -143,10 +143,11 @@ $(document).ready(function () {
             $("#course").empty();
             $("#questions-table tbody").empty();
             if (response.responseCode === 200) {
+            	console.log(response)
                 let courses = response.t.courses;
                 let questions = response.t.questions;
-                if (questions.length < 5)
-                    alert("You must have at least 5 questions created!");
+                if (questions.length < 1)
+                    alert("You must have at least 1 questions created!");
                 else {
                     courses.forEach(function (course) {
                         let o = new Option(course.description, course.id);
@@ -157,7 +158,7 @@ $(document).ready(function () {
                     });
                 }
             } else
-                alert(response.responseMessage)
+                alert(response.responseMessage, "Course")
         }).fail(function(e) {
             console.log(e);
         });

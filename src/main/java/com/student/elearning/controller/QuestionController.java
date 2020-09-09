@@ -73,7 +73,7 @@ public class QuestionController {
         customObject.put("questions", questions);
         customObject.put("courses", courses);
 
-        if (!questions.isEmpty() && !courses.isEmpty()) {
+        if (!questions.isEmpty() || !courses.isEmpty()) {
             response.setResponseCode(200);
             response.setResponseMessage("OK");
             response.setT(customObject);

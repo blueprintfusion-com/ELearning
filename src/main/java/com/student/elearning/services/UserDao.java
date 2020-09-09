@@ -42,7 +42,7 @@ public class UserDao extends JdbcDaoSupport {
     }
 
     public User validateUser(User user, StudentDao studentDao, PedagogueDao pedagogueDao) {
-        String sql = "SELECT * FROM users WHERE username = ? AND password = ? COLLATE Latin1_General_CS_AS ";
+        String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
         Object[] params = new Object[] {user.getUsername(), user.getPassword()};
         List<User> users = template.query(sql, params, new UserMapper());
         if (users.isEmpty())
@@ -57,7 +57,7 @@ public class UserDao extends JdbcDaoSupport {
                         loggedUser = null;
                     break;
                 case "pedagogue":
-                    if (!pedagogueDao.pedagogueByUserId(loggedUser.getId()).getStatus())
+                    if (pedagogueDao.pedagogueByUserId(loggedUser.getId())== null)
                         loggedUser = null;
                     break;
             }
